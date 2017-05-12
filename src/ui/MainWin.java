@@ -3,10 +3,23 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 
+/**
+ * 
+ * @author billy0920
+ * @mail billy.wuweibin@gmail.com
+ * @date 2017-05-12
+ *
+ */
 public class MainWin extends JFrame {
+	private static final long serialVersionUID = 3310153924711298805L;
+
 	public MainWin(String title) {
 		super(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +52,44 @@ public class MainWin extends JFrame {
 
 	private void addJMenuBar() {
 		// TODO Auto-generated method stub
+		JMenuBar mb = new JMenuBar();
+		JMenu file = new JMenu("File");
+		JMenu view = new JMenu("View");
+		JMenu action = new JMenu("Action");
+		JMenu help = new JMenu("Help");
+		mb.add(file);
+		mb.add(view);
+		mb.add(action);
+		mb.add(help);
+		file.add(new AbstractAction("New"){
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		file.add(new AbstractAction("Exit"){
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				Exit();
+			}
+
+	
+			
+		});
 		
+		this.setJMenuBar(mb);
+	}
+	private void Exit() {
+		// TODO Auto-generated method stub
+		System.exit(0);
 	}
 }
