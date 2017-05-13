@@ -2,10 +2,14 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,6 +26,15 @@ public class MainWin extends JFrame {
 
 	public MainWin(String title) {
 		super(title);
+		String strIon = "/icons/netFomula.png";
+		try {
+			Image image = ImageIO.read(this.getClass().getResource(strIon));
+			super.setIconImage(image);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize((int)(size.getWidth()*0.618), (int)(size.getHeight()*0.618));
@@ -81,8 +94,6 @@ public class MainWin extends JFrame {
 				// TODO Auto-generated method stub
 				Exit();
 			}
-
-	
 			
 		});
 		
