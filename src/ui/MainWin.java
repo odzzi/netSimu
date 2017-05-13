@@ -2,7 +2,6 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -13,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 
 /**
  * 
@@ -23,13 +23,14 @@ import javax.swing.JMenuBar;
  */
 public class MainWin extends JFrame {
 	private static final long serialVersionUID = 3310153924711298805L;
-
+	private ImageIcon logo = null;
 	public MainWin(String title) {
 		super(title);
-		String strIon = "/icons/netFomula.png";
+		
 		try {
-			Image image = ImageIO.read(this.getClass().getResource(strIon));
-			super.setIconImage(image);
+			String strIon = "/icons/netFomula.png";
+			logo = new ImageIcon(ImageIO.read(this.getClass().getResource(strIon)));
+			super.setIconImage(logo.getImage());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,13 +86,13 @@ public class MainWin extends JFrame {
 			}
 			
 		});
+		file.addSeparator();
 		file.add(new AbstractAction("Exit"){
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+			public void actionPerformed(ActionEvent e) {
 				Exit();
 			}
 			
@@ -100,7 +101,13 @@ public class MainWin extends JFrame {
 		this.setJMenuBar(mb);
 	}
 	private void Exit() {
-		// TODO Auto-generated method stub
-		System.exit(0);
+		if(JOptionPane.showConfirmDialog(null, 
+				"Are you sure to EXIT?", 
+				"Exit", 
+				JOptionPane.OK_CANCEL_OPTION, 
+				JOptionPane.INFORMATION_MESSAGE,
+				logo) == JOptionPane.OK_OPTION) {
+			System.exit(0);
+		}
 	}
 }
